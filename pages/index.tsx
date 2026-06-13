@@ -1,387 +1,418 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
-const SPECS = [
-  { value: "8U", label: "rack capacity" },
-  { value: "19\"", label: "rail standard" },
-  { value: "ATX", label: "motherboard support" },
-  { value: "24–34\"", label: "depth range" },
-  { value: "walnut", label: "real wood veneer" },
-  { value: "soft-close", label: "tempered glass doors" },
-];
-
-const FEATURES = [
-  {
-    title: "Crafted by Hand",
-    body: "Real walnut veneer over solid hardwood. Traditional joinery. No visible fasteners. No plastic bezels. This is furniture, not a housing.",
-  },
-  {
-    title: "Silent by Design",
-    body: "Engineered airflow with sound-dampened intake paths. Your hardware stays cool. Your living room stays quiet. You forget it's there.",
-  },
-  {
-    title: "Seamless Integration",
-    body: "Cable management channels. Hidden I/O routing. A credenza silhouette that disappears into your home — until you open the glass doors.",
-  },
-];
-
-const BENEFITS = [
-  "Disappears into your decor",
-  "Professional-grade cooling",
-  "No visible cables or LEDs",
-  "ATX-compatible interior",
-  "Soft-close tempered glass doors",
-  "Solid wood tapered legs",
-];
+function useReveal() {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.querySelectorAll(
+            ".reveal-on-scroll, .reveal-on-scroll-delay-1, .reveal-on-scroll-delay-2, .reveal-on-scroll-delay-3, .reveal-on-scroll-delay-4, .reveal-on-scroll-delay-5, .reveal-image"
+          ).forEach((child) => {
+            child.classList.add("revealed");
+          });
+          observer.unobserve(el);
+        }
+      },
+      { threshold: 0.12 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+  return ref;
+}
 
 export default function Home() {
   const [navSolid, setNavSolid] = useState(false);
-  const [heroImageLoaded, setHeroImageLoaded] = useState(false);
-  const galleryRef = useRef<HTMLDivElement>(null);
-  const mainRef = useRef<HTMLDivElement>(null);
+  const designRef = useReveal();
+  const silenceRef = useReveal();
+  const closeRef = useReveal();
+  const galleryRef = useReveal();
+  const benefitsRef = useReveal();
+  const ctaRef = useReveal();
 
   useEffect(() => {
-    const el = mainRef.current;
     const handleScroll = () => {
-      if (el) {
-        setNavSolid(el.scrollTop > window.innerHeight * 0.3);
-      }
+      setNavSolid(window.scrollY > window.innerHeight * 0.12);
     };
-    el?.addEventListener("scroll", handleScroll);
-    return () => el?.removeEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <div ref={mainRef} className="h-screen overflow-y-scroll snap-y snap-mandatory">
+    <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
           navSolid
-            ? "border-b border-ink-dim/20 bg-background/80 backdrop-blur-md"
-            : "bg-transparent border-b border-transparent"
+            ? "border-b border-white/[0.03] bg-[#0a0908]/80 backdrop-blur-2xl"
+            : "border-b border-transparent bg-transparent"
         }`}
       >
-        <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-6">
+        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-8">
           <a
             href="#hero"
-            className="font-serif text-lg font-light tracking-wide text-ink"
+            className="text-[1.125rem] font-light tracking-wide text-[#e8e4df] transition-opacity duration-300 hover:opacity-60"
             style={{ fontFamily: "var(--font-cormorant)" }}
           >
             Atelier Rack
           </a>
-          <div className="hidden items-center gap-8 sm:flex" style={{ fontFamily: "var(--font-geist-mono)" }}>
-            <a href="#why" className="text-xs uppercase tracking-[0.2em] text-ink-dim hover:text-brass transition-colors">
-              Why
-            </a>
-            <a href="#how" className="text-xs uppercase tracking-[0.2em] text-ink-dim hover:text-brass transition-colors">
-              How
-            </a>
-            <a href="#what" className="text-xs uppercase tracking-[0.2em] text-ink-dim hover:text-brass transition-colors">
-              What
-            </a>
-            <a
-              href="#cta"
-              className="rounded-sm border border-brass/40 px-4 py-1.5 text-xs uppercase tracking-[0.2em] text-brass transition-colors hover:bg-brass hover:text-background"
-            >
-              Shop
-            </a>
-          </div>
+          <a
+            href="#cta"
+            className="rounded-sm border border-[#c4a265]/25 px-6 py-2.5 text-[10px] uppercase tracking-[0.25em] text-[#c4a265] transition-all duration-500 hover:border-[#c4a265] hover:bg-[#c4a265] hover:text-[#0a0908]"
+            style={{ fontFamily: "var(--font-geist-mono)" }}
+          >
+            Pre-order
+          </a>
         </div>
       </nav>
 
-      <section id="hero" className="snap-section relative flex items-center justify-center overflow-hidden bg-background">
-        <div className={`absolute inset-0 transition-opacity duration-[2000ms] ${heroImageLoaded ? "opacity-40" : "opacity-0"}`}>
+      {/* ── HERO ── */}
+      <section id="hero" className="snap-section relative flex items-center justify-center overflow-hidden bg-[#0a0908]">
+        <div className="absolute inset-0">
           <Image
             src="/products/1.jpg"
             alt=""
             fill
-            className="object-cover"
+            className="animate-hero-image object-cover"
             priority
             sizes="100vw"
-            onLoadingComplete={() => setHeroImageLoaded(true)}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/40 to-background" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0908] via-[#0a0908]/50 to-[#0a0908]" />
         </div>
 
-        <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
+        <div className="relative z-10 mx-auto max-w-4xl px-8 pt-24 text-center">
           <p
-            className="animate-fade-in-up mb-6 text-xs uppercase tracking-[0.3em] text-brass delay-200"
+            className="animate-fade-in-up mb-10 text-[10px] uppercase tracking-[0.4em] text-[#c4a265]/80 delay-200"
             style={{ fontFamily: "var(--font-geist-mono)" }}
           >
             Atelier Rack
           </p>
 
           <h1
-            className="animate-fade-in-up mb-10 text-5xl font-light leading-[1.1] tracking-tight text-ink sm:text-6xl lg:text-7xl delay-500"
+            className="animate-fade-in-up mb-14 text-[2.5rem] font-light leading-[1.05] tracking-tight text-[#e8e4df] sm:text-6xl lg:text-[4.5rem] delay-500"
             style={{ fontFamily: "var(--font-cormorant)" }}
           >
             Technology that belongs
             <br />
-            <em>in your life.</em>
+            <em className="font-light">in your life.</em>
           </h1>
 
-          <div className="animate-fade-in-up delay-1000 mx-auto mb-12 h-px w-12 bg-brass/60" />
+          <div className="animate-fade-in-up delay-1200 mx-auto mb-16 h-px w-8 bg-[#c4a265]/40" />
 
           <p
-            className="animate-fade-in-up mx-auto max-w-md text-sm leading-relaxed text-ink-dim delay-1200"
+            className="animate-fade-in-up mx-auto max-w-sm text-[12px] leading-[2] text-[#8a8279]/80 delay-1500"
+            style={{ fontFamily: "var(--font-geist-mono)" }}
           >
-            An 8U 19&quot; ATX rack, clad in walnut. Credenza proportions. Soft-close glass doors. Tapered legs. Built for the living room, not the server room.
+            An 8U 19&quot; ATX rack, clad in walnut.
+            <br />
+            Credenza proportions. Soft-close glass doors. Tapered legs.
           </p>
 
-          <div className="animate-fade-in-up flex flex-col items-center justify-center gap-4 sm:flex-row delay-1500">
+          <div className="animate-fade-in-up flex flex-col items-center justify-center gap-5 pt-14 sm:flex-row delay-2000">
             <a
-              href="#why"
-              className="rounded-sm border border-brass/40 px-8 py-3 text-sm uppercase tracking-[0.15em] text-brass transition-all hover:bg-brass hover:text-background"
+              href="#design"
+              className="rounded-sm border border-[#c4a265]/25 px-9 py-3.5 text-[10px] uppercase tracking-[0.25em] text-[#c4a265] transition-all duration-500 hover:border-[#c4a265] hover:bg-[#c4a265] hover:text-[#0a0908]"
+              style={{ fontFamily: "var(--font-geist-mono)" }}
             >
               Discover
             </a>
             <a
               href="#cta"
-              className="rounded-sm bg-cream px-8 py-3 text-sm uppercase tracking-[0.15em] text-walnut-dark transition-all hover:bg-white"
+              className="rounded-sm bg-[#f5efe6] px-9 py-3.5 text-[10px] uppercase tracking-[0.25em] text-[#3a1e10] transition-all duration-500 hover:bg-white"
+              style={{ fontFamily: "var(--font-geist-mono)" }}
             >
-              Shop
+              Pre-order
             </a>
           </div>
         </div>
       </section>
 
-      <section id="why" className="snap-section relative flex items-center justify-center bg-background">
-        <span
-          className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[30vw] font-light leading-none text-ink-dim/5"
-          style={{ fontFamily: "var(--font-geist-mono)" }}
-        >
-          01
-        </span>
-        <div className="relative z-10 mx-auto max-w-3xl px-6 text-center">
-          <p
-            className="mb-6 text-xs uppercase tracking-[0.3em] text-brass"
-            style={{ fontFamily: "var(--font-geist-mono)" }}
-          >
-            Why
-          </p>
+      {/* ── A CONVERSATION PIECE ── */}
+      <section id="design" ref={designRef} className="snap-section relative flex items-center justify-center bg-[#0a0908] py-32">
+        <div className="relative z-10 mx-auto max-w-2xl px-8 text-center">
+
           <h2
-            className="mb-10 text-4xl font-light leading-snug tracking-tight text-ink sm:text-5xl lg:text-6xl"
+            className="reveal-on-scroll mb-12 text-[2.25rem] font-light leading-[1.1] tracking-tight text-[#e8e4df] sm:text-[3.25rem] lg:text-[3.75rem]"
             style={{ fontFamily: "var(--font-cormorant)" }}
           >
-            Your living room shouldn&apos;t
+            A conversation piece,
             <br />
-            look like a data center.
+            not an eyesore.
           </h2>
-          <p className="mx-auto max-w-xl text-base leading-relaxed text-warm-gray">
-            Powerful computing deserves a home that doesn&apos;t compromise on design.
-            Every other rack on the market asks you to hide your hardware. We built
-            one worth showing.
+          <p className="reveal-on-scroll-delay-1 mx-auto max-w-md text-[15px] leading-[1.85] text-[#8a8279]">
+            Your living room shouldn&apos;t look like a data center. Every other rack on the market asks you to hide your hardware. We built one worth showing.
+          </p>
+          <div className="reveal-on-scroll-delay-2 mx-auto my-24 h-px w-12 bg-[#c4a265]/15" />
+          <p className="reveal-on-scroll-delay-3 mx-auto max-w-sm text-[12px] leading-[2] text-[#5a5550]/70" style={{ fontFamily: "var(--font-geist-mono)" }}>
+            Real walnut veneer over solid hardwood. Traditional joinery. No visible fasteners. No plastic bezels. Tapered legs that echo mid-century credenzas, not server cabinets.
           </p>
         </div>
       </section>
 
-      <section id="how" className="snap-section relative flex items-center justify-center bg-background">
-        <span
-          className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[30vw] font-light leading-none text-ink-dim/5"
-          style={{ fontFamily: "var(--font-geist-mono)" }}
-        >
-          02
-        </span>
+      {/* ── SILENCE IS A FEATURE ── */}
+      <section ref={silenceRef} className="snap-section relative flex items-center justify-center bg-[#0a0908] py-32">
+        <div className="relative z-10 mx-auto max-w-6xl px-8">
+          <div className="mb-24">
 
-        <div className="relative z-10 mx-auto max-w-5xl px-6">
-          <div className="mb-20 text-center">
-            <p
-              className="mb-6 text-xs uppercase tracking-[0.3em] text-brass"
-              style={{ fontFamily: "var(--font-geist-mono)" }}
-            >
-              How
-            </p>
             <h2
-              className="text-4xl font-light tracking-tight text-ink sm:text-5xl"
+              className="reveal-on-scroll text-[2.25rem] font-light leading-[1.1] tracking-tight text-[#e8e4df] sm:text-[3.25rem] lg:text-[3.75rem]"
               style={{ fontFamily: "var(--font-cormorant)" }}
             >
-              Built different, by design.
+              Silence is a feature.
             </h2>
-          </div>
-
-          <div className="grid gap-16 sm:grid-cols-3">
-            {FEATURES.map((f) => (
-              <div
-                key={f.title}
-                className="tilt-card rounded-sm border border-ink-dim/10 bg-ink-dim/5 p-8"
-              >
-                <h3
-                  className="mb-4 text-2xl font-light text-ink"
-                  style={{ fontFamily: "var(--font-cormorant)" }}
-                >
-                  {f.title}
-                </h3>
-                <p className="text-sm leading-relaxed text-warm-gray">{f.body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="what" className="snap-section relative flex items-center justify-center bg-background">
-        <span
-          className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[30vw] font-light leading-none text-ink-dim/5"
-          style={{ fontFamily: "var(--font-geist-mono)" }}
-        >
-          03
-        </span>
-
-        <div className="relative z-10 mx-auto max-w-6xl px-6">
-          <div className="mb-16 text-center">
-            <p
-              className="mb-6 text-xs uppercase tracking-[0.3em] text-brass"
-              style={{ fontFamily: "var(--font-geist-mono)" }}
-            >
-              What
+            <p className="reveal-on-scroll-delay-1 mx-auto mt-8 max-w-lg text-[15px] leading-[1.85] text-[#8a8279]">
+              Front-to-back airflow. Built-in cable channels with a removable back panel. Radiator mounts and grommeted pass-throughs for water cooling. You forget it&apos;s there.
             </p>
-            <h2
-              className="text-4xl font-light tracking-tight text-ink sm:text-5xl"
-              style={{ fontFamily: "var(--font-cormorant)" }}
-            >
-              The specs, refined.
-            </h2>
           </div>
 
-          <div className="mb-20 grid items-center gap-12 sm:grid-cols-2">
-            <div className="relative aspect-[2/3] overflow-hidden rounded-sm">
+          <div className="grid items-center gap-16 sm:grid-cols-2">
+            <div className="reveal-image relative aspect-[5/4] overflow-hidden rounded-sm">
               <Image
-                src="/products/1.jpg"
-                alt="Atelier Rack — walnut credenza with integrated server rack"
+                src="/products/2.jpeg"
+                alt="Atelier Rack \u2014 walnut finish and glass doors"
                 fill
                 className="object-cover"
                 sizes="(max-width: 640px) 100vw, 50vw"
               />
             </div>
 
-            <div
-              className="space-y-10"
-              style={{ fontFamily: "var(--font-geist-mono)" }}
-            >
-              {SPECS.map((s) => (
-                <div key={s.value} className="spec-line relative py-4">
-                  <span className="block text-4xl font-light tracking-tight text-ink sm:text-5xl">
-                    {s.value}
-                  </span>
-                  <span className="block text-xs uppercase tracking-[0.3em] text-warm-gray">
-                    {s.label}
-                  </span>
-                </div>
-              ))}
+            <div style={{ fontFamily: "var(--font-geist-mono)" }}>
+              <div className="reveal-on-scroll-delay-2 spec-line">
+                <span className="block text-[3rem] font-light tracking-tight text-[#e8e4df] sm:text-[3.75rem]">
+                  8U
+                </span>
+                <span className="block text-[10px] uppercase tracking-[0.35em] text-[#8a8279]">
+                  of rack capacity
+                </span>
+              </div>
+              <div className="reveal-on-scroll-delay-3 spec-line">
+                <span className="block text-[3rem] font-light tracking-tight text-[#e8e4df] sm:text-[3.75rem]">
+                  19&quot;
+                </span>
+                <span className="block text-[10px] uppercase tracking-[0.35em] text-[#8a8279]">
+                  rail standard
+                </span>
+              </div>
+              <div className="reveal-on-scroll-delay-4 spec-line">
+                <span className="block text-[3rem] font-light tracking-tight text-[#e8e4df] sm:text-[3.75rem]">
+                  ATX
+                </span>
+                <span className="block text-[10px] uppercase tracking-[0.35em] text-[#8a8279]">
+                  motherboard support
+                </span>
+              </div>
             </div>
           </div>
-
-          <div
-            ref={galleryRef}
-            className="gallery-scroll -mx-6 flex gap-6 overflow-x-auto px-6 pb-4"
-          >
-            <div className="relative min-w-[80vw] flex-shrink-0 overflow-hidden rounded-sm sm:min-w-[500px]">
-              <Image
-                src="/products/2.jpeg"
-                alt="Atelier Rack — walnut finish and glass doors"
-                width={1402}
-                height={1122}
-                className="tilt-card h-full w-full object-cover"
-              />
-            </div>
-            <div className="relative min-w-[80vw] flex-shrink-0 overflow-hidden rounded-sm sm:min-w-[500px]">
-              <Image
-                src="/products/3.jpeg"
-                alt="Atelier Rack — tapered legs and interior detail"
-                width={1402}
-                height={1122}
-                className="tilt-card h-full w-full object-cover"
-              />
-            </div>
-            <div className="min-w-[60vw] flex-shrink-0 sm:min-w-[400px]" />
-          </div>
-          <p
-            className="mt-4 text-center text-xs uppercase tracking-[0.3em] text-ink-dim"
-            style={{ fontFamily: "var(--font-geist-mono)" }}
-          >
-            Drag to explore
-          </p>
         </div>
       </section>
 
-      <section className="snap-section relative flex items-center justify-center bg-background">
-        <div className="relative z-10 mx-auto max-w-2xl px-6 text-center">
-          {BENEFITS.map((b) => (
+      {/* ── BUILT TO CLOSE BEAUTIFULLY ── */}
+      <section ref={closeRef} className="snap-section relative flex items-center justify-center bg-[#0a0908] py-32">
+        <div className="relative z-10 mx-auto max-w-6xl px-8">
+          <div className="mb-24">
+
+            <h2
+              className="reveal-on-scroll text-[2.25rem] font-light leading-[1.1] tracking-tight text-[#e8e4df] sm:text-[3.25rem] lg:text-[3.75rem]"
+              style={{ fontFamily: "var(--font-cormorant)" }}
+            >
+              Built to close beautifully.
+            </h2>
+            <p className="reveal-on-scroll-delay-1 mx-auto mt-8 max-w-lg text-[15px] leading-[1.85] text-[#8a8279]">
+              Soft-close tempered glass doors. Lockable. Dust-filtered. Real walnut veneer that ages with grace. Every detail is a decision.
+            </p>
+          </div>
+
+          <div className="grid items-center gap-16 sm:grid-cols-2">
+            <div className="order-2 sm:order-1" style={{ fontFamily: "var(--font-geist-mono)" }}>
+              <div className="reveal-on-scroll-delay-2 spec-line">
+                <span className="block text-[3rem] font-light tracking-tight text-[#e8e4df] sm:text-[3.75rem]">
+                  Soft-close
+                </span>
+                <span className="block text-[10px] uppercase tracking-[0.35em] text-[#8a8279]">
+                  tempered glass, lockable
+                </span>
+              </div>
+              <div className="reveal-on-scroll-delay-3 spec-line">
+                <span className="block text-[3rem] font-light tracking-tight text-[#e8e4df] sm:text-[3.75rem]">
+                  24–34&quot;
+                </span>
+                <span className="block text-[10px] uppercase tracking-[0.35em] text-[#8a8279]">
+                  adjustable depth, inches
+                </span>
+              </div>
+              <div className="reveal-on-scroll-delay-4 spec-line">
+                <span className="block text-[3rem] font-light tracking-tight text-[#e8e4df] sm:text-[3.75rem]">
+                  Walnut
+                </span>
+                <span className="block text-[10px] uppercase tracking-[0.35em] text-[#8a8279]">
+                  real wood veneer
+                </span>
+              </div>
+              <div className="reveal-on-scroll-delay-5 spec-line">
+                <span className="block text-[3rem] font-light tracking-tight text-[#e8e4df] sm:text-[3.75rem]">
+                  Dust-filtered
+                </span>
+                <span className="block text-[10px] uppercase tracking-[0.35em] text-[#8a8279]">
+                  clean air, clean hardware
+                </span>
+              </div>
+            </div>
+            <div className="reveal-image relative order-1 aspect-[5/4] overflow-hidden rounded-sm sm:order-2">
+              <Image
+                src="/products/3.jpeg"
+                alt="Atelier Rack \u2014 tapered legs and interior detail"
+                fill
+                className="object-cover"
+                sizes="(max-width: 640px) 100vw, 50vw"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── GALLERY ── */}
+      <section ref={galleryRef} className="snap-section relative flex items-end bg-[#0a0908] pb-24 pt-32">
+        <div className="w-full">
+          <div className="mb-16 px-8">
+
+          </div>
+          <div className="gallery-scroll flex gap-3 overflow-x-auto px-8">
+            <div className="reveal-image relative aspect-[4/3] min-w-[80vw] flex-shrink-0 overflow-hidden rounded-sm sm:min-w-[550px]">
+              <Image
+                src="/products/1.jpg"
+                alt="Atelier Rack \u2014 full view"
+                fill
+                className="object-cover"
+                sizes="80vw"
+              />
+            </div>
+            <div className="reveal-image relative aspect-[4/3] min-w-[80vw] flex-shrink-0 overflow-hidden rounded-sm sm:min-w-[550px]">
+              <Image
+                src="/products/2.jpeg"
+                alt="Atelier Rack \u2014 walnut finish and glass doors"
+                fill
+                className="object-cover"
+                sizes="80vw"
+              />
+            </div>
+            <div className="reveal-image relative aspect-[4/3] min-w-[80vw] flex-shrink-0 overflow-hidden rounded-sm sm:min-w-[550px]">
+              <Image
+                src="/products/3.jpeg"
+                alt="Atelier Rack \u2014 tapered legs and detail"
+                fill
+                className="object-cover"
+                sizes="80vw"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── FITS YOUR GEAR ── */}
+      <section ref={benefitsRef} className="snap-section relative flex items-center justify-center bg-[#0a0908] py-32">
+        <div className="relative z-10 mx-auto max-w-2xl px-8 text-center">
+          <h2
+            className="reveal-on-scroll mb-24 text-[2.25rem] font-light leading-[1.15] tracking-tight text-[#e8e4df] sm:text-[3.25rem]"
+            style={{ fontFamily: "var(--font-cormorant)" }}
+          >
+            Fits your gear.
+            <br />
+            Fits your life.
+          </h2>
+
+          {[
+            "Disappears into your decor",
+            "Front-to-back cooling",
+            "Built-in cable management",
+            "Water cooling ready",
+            "Lockable tempered glass doors",
+            "Dust-filtered air intake",
+          ].map((b, i) => (
             <p
               key={b}
-              className="mb-8 text-2xl font-light leading-relaxed text-ink sm:text-3xl lg:text-4xl"
+              className={`reveal-on-scroll-delay-${Math.min(i + 1, 5)} mb-10 text-[1.375rem] font-light leading-relaxed text-[#e8e4df]/60 sm:text-2xl`}
               style={{ fontFamily: "var(--font-cormorant)" }}
             >
               {b}
             </p>
           ))}
 
-          <div className="mx-auto my-16 h-px w-16 bg-brass/40" />
+          <div className="reveal-on-scroll-delay-3 mx-auto my-24 h-px w-12 bg-[#c4a265]/20" />
 
-          <p
-            className="text-2xl font-light text-ink-dim"
-            style={{ fontFamily: "var(--font-geist-mono)" }}
-          >
-            $800
-          </p>
-          <p
-            className="mt-2 text-xs uppercase tracking-[0.3em] text-ink-dim/60"
-            style={{ fontFamily: "var(--font-geist-mono)" }}
-          >
-            Free shipping &middot; Continental US
-          </p>
+          <div className="reveal-on-scroll-delay-4">
+            <p
+              className="text-[1.5rem] font-light text-[#5a5550]"
+              style={{ fontFamily: "var(--font-geist-mono)" }}
+            >
+              $800
+            </p>
+            <p
+              className="mt-3 text-[9px] uppercase tracking-[0.4em] text-[#5a5550]/40"
+              style={{ fontFamily: "var(--font-geist-mono)" }}
+            >
+              Free shipping &middot; Continental US
+            </p>
+          </div>
         </div>
       </section>
 
-      <section id="cta" className="snap-section relative flex items-center justify-center overflow-hidden bg-walnut animate-pulse-glow">
-        <div className="relative z-10 mx-auto max-w-3xl px-6 text-center">
+      {/* ── CTA ── */}
+      <section id="cta" ref={ctaRef} className="snap-section relative flex items-center justify-center overflow-hidden bg-[#0a0908] py-32">
+        <div className="relative z-10 mx-auto max-w-3xl px-8 text-center">
+          <div className="reveal-on-scroll mx-auto mb-16 h-px w-16 bg-[#c4a265]/30" />
           <h2
-            className="mb-6 text-5xl font-light tracking-tight text-cream sm:text-6xl lg:text-7xl"
+            className="reveal-on-scroll-delay-1 text-[2.75rem] font-light tracking-tight text-[#e8e4df] sm:text-6xl lg:text-7xl"
             style={{ fontFamily: "var(--font-cormorant)" }}
           >
             Bring it home.
           </h2>
           <p
-            className="mb-12 text-sm leading-relaxed text-cream/60"
+            className="reveal-on-scroll-delay-2 mx-auto mt-10 mb-16 max-w-sm text-[12px] leading-[2] text-[#8a8279]"
             style={{ fontFamily: "var(--font-geist-mono)" }}
           >
             An 8U 19&quot; rack. Real walnut veneer. Credenza proportions.
-            <br />
             Designed for the room you live in.
           </p>
-          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <div className="reveal-on-scroll-delay-3 flex flex-col items-center justify-center gap-5 sm:flex-row">
             <a
               href="#"
-              className="rounded-sm bg-cream px-10 py-3.5 text-sm uppercase tracking-[0.15em] text-walnut-dark transition-all hover:bg-white"
+              className="rounded-sm bg-[#c4a265] px-12 py-4 text-[10px] uppercase tracking-[0.25em] text-[#0a0908] transition-all duration-500 hover:bg-[#d4b275]"
+              style={{ fontFamily: "var(--font-geist-mono)" }}
             >
               Pre-order
             </a>
             <a
-              href="#what"
-              className="rounded-sm border border-cream/30 px-10 py-3.5 text-sm uppercase tracking-[0.15em] text-cream transition-all hover:border-cream hover:bg-cream/10"
+              href="#design"
+              className="rounded-sm border border-[#5a5550]/30 px-12 py-4 text-[10px] uppercase tracking-[0.25em] text-[#8a8279] transition-all duration-500 hover:border-[#8a8279] hover:text-[#e8e4df]"
+              style={{ fontFamily: "var(--font-geist-mono)" }}
             >
-              View specs
+              Discover
             </a>
           </div>
         </div>
       </section>
 
-      <footer className="border-t border-ink-dim/10 py-10">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 sm:flex-row">
-          <p className="text-xs text-ink-dim" style={{ fontFamily: "var(--font-geist-mono)" }}>
+      <footer className="border-t border-[#5a5550]/8 bg-[#0a0908] py-16">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-8 sm:flex-row">
+          <p className="text-[9px] uppercase tracking-[0.3em] text-[#5a5550]/50" style={{ fontFamily: "var(--font-geist-mono)" }}>
             &copy; {new Date().getFullYear()} Atelier Rack
           </p>
-          <div className="flex gap-8">
-            <a href="#" className="text-xs text-ink-dim hover:text-brass transition-colors" style={{ fontFamily: "var(--font-geist-mono)" }}>
+          <div className="flex gap-12" style={{ fontFamily: "var(--font-geist-mono)" }}>
+            <a href="#" className="text-[9px] uppercase tracking-[0.3em] text-[#5a5550]/50 transition-colors duration-300 hover:text-[#c4a265]">
               Contact
             </a>
-            <a href="#" className="text-xs text-ink-dim hover:text-brass transition-colors" style={{ fontFamily: "var(--font-geist-mono)" }}>
+            <a href="#" className="text-[9px] uppercase tracking-[0.3em] text-[#5a5550]/50 transition-colors duration-300 hover:text-[#c4a265]">
               Privacy
             </a>
-            <a href="#" className="text-xs text-ink-dim hover:text-brass transition-colors" style={{ fontFamily: "var(--font-geist-mono)" }}>
+            <a href="#" className="text-[9px] uppercase tracking-[0.3em] text-[#5a5550]/50 transition-colors duration-300 hover:text-[#c4a265]">
               Terms
             </a>
           </div>
         </div>
       </footer>
-    </div>
+    </>
   );
 }
