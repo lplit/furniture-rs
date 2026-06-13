@@ -1,36 +1,122 @@
 @import "tailwindcss";
 
-:root {
-  --background: #faf8f5;
-  --foreground: #1a1a1a;
-  --walnut: #5c3a21;
-  --walnut-light: #8b6340;
-  --walnut-dark: #3a2210;
-  --cream: #faf3eb;
-  --warm-gray: #9a918a;
-  --warm-border: #e5ddd4;
-}
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-walnut: var(--walnut);
-  --color-walnut-light: var(--walnut-light);
-  --color-walnut-dark: var(--walnut-dark);
-  --color-cream: var(--cream);
-  --color-warm-gray: var(--warm-gray);
-  --color-warm-border: var(--warm-border);
+  --color-walnut: #6b3a2a;
+  --color-walnut-light: #8b5e3c;
+  --color-walnut-dark: #3a1e10;
+  --color-cream: #f5efe6;
+  --color-cream-dim: #d4cdc3;
+  --color-warm-gray: #8a8279;
+  --color-brass: #c4a265;
+  --color-ink: #e8e4df;
+  --color-ink-dim: #5a5550;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-cormorant);
+}
+
+:root {
+  --background: #0a0908;
+  --foreground: #e8e4df;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  cursor: crosshair;
+}
+
+a, button, [role="button"] {
+  cursor: pointer;
 }
 
 ::selection {
-  background: var(--walnut);
-  color: white;
+  background: #c4a265;
+  color: #0a0908;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(2rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-fade-in {
+  animation: fade-in 1.2s ease both;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-500 { animation-delay: 500ms; }
+.delay-700 { animation-delay: 700ms; }
+.delay-1000 { animation-delay: 1000ms; }
+.delay-1200 { animation-delay: 1200ms; }
+.delay-1500 { animation-delay: 1500ms; }
+.delay-2000 { animation-delay: 2000ms; }
+.delay-2500 { animation-delay: 2500ms; }
+.delay-3000 { animation-delay: 3000ms; }
+
+.snap-section {
+  scroll-snap-align: start;
+  min-height: 100vh;
+}
+
+.gallery-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.gallery-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.tilt-card {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-style: preserve-3d;
+}
+
+.tilt-card:hover {
+  transform: perspective(800px) rotateY(-4deg) rotateX(3deg) scale(1.02);
+}
+
+.spec-line {
+  position: relative;
+}
+.spec-line::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #5a5550, transparent);
 }
