@@ -31,9 +31,15 @@ html {
   .reveal-on-scroll-delay-3,
   .reveal-on-scroll-delay-4,
   .reveal-on-scroll-delay-5,
-  .reveal-image {
+  .reveal-image,
+  .reveal-blur {
     opacity: 1 !important;
     transform: none !important;
+    filter: none !important;
+  }
+  .line-draw {
+    opacity: 1 !important;
+    transform: scaleX(1) !important;
   }
 }
 
@@ -44,7 +50,20 @@ body {
   overflow-x: hidden;
 }
 
-a, button, [role="button"] {
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.015;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+}
+
+a,
+button,
+[role="button"] {
   cursor: pointer;
 }
 
@@ -53,10 +72,12 @@ a, button, [role="button"] {
   color: #0a0908;
 }
 
+/* ── Hero Animations ── */
+
 @keyframes fade-in-up {
   from {
     opacity: 0;
-    transform: translateY(2.5rem);
+    transform: translateY(3rem);
   }
   to {
     opacity: 1;
@@ -64,42 +85,66 @@ a, button, [role="button"] {
   }
 }
 
-@keyframes pulse-glow {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.85; }
-}
-
 @keyframes hero-image-in {
   from {
     opacity: 0;
-    transform: scale(1.05);
+    transform: scale(1.08);
   }
   to {
-    opacity: 0.3;
+    opacity: 0.22;
     transform: scale(1);
   }
 }
 
-.animate-fade-in-up {
-  animation: fade-in-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+@keyframes breathe {
+  0%, 100% {
+    opacity: 0.15;
+    transform: scaleY(1);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scaleY(1.4);
+  }
 }
 
-.animate-pulse-glow {
-  animation: pulse-glow 4s ease-in-out infinite;
+.animate-fade-in-up {
+  animation: fade-in-up 1.4s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .animate-hero-image {
-  animation: hero-image-in 2s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: hero-image-in 2.2s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-.delay-200 { animation-delay: 200ms; }
-.delay-500 { animation-delay: 500ms; }
-.delay-800 { animation-delay: 800ms; }
-.delay-1000 { animation-delay: 1000ms; }
-.delay-1200 { animation-delay: 1200ms; }
-.delay-1500 { animation-delay: 1500ms; }
-.delay-2000 { animation-delay: 2000ms; }
-.delay-2500 { animation-delay: 2500ms; }
+.animate-breathe {
+  animation: breathe 3s ease-in-out infinite;
+}
+
+.delay-200 {
+  animation-delay: 200ms;
+}
+.delay-500 {
+  animation-delay: 500ms;
+}
+.delay-800 {
+  animation-delay: 800ms;
+}
+.delay-1000 {
+  animation-delay: 1000ms;
+}
+.delay-1200 {
+  animation-delay: 1200ms;
+}
+.delay-1500 {
+  animation-delay: 1500ms;
+}
+.delay-2000 {
+  animation-delay: 2000ms;
+}
+.delay-2500 {
+  animation-delay: 2500ms;
+}
+
+/* ── Layout ── */
 
 .snap-section {
   min-height: 100vh;
@@ -108,10 +153,17 @@ a, button, [role="button"] {
 .gallery-scroll {
   scrollbar-width: none;
   -ms-overflow-style: none;
+  scroll-snap-type: x mandatory;
 }
 .gallery-scroll::-webkit-scrollbar {
   display: none;
 }
+
+.gallery-scroll > * {
+  scroll-snap-align: center;
+}
+
+/* ── Scroll Reveal (text) ── */
 
 .reveal-on-scroll,
 .reveal-on-scroll-delay-1,
@@ -120,16 +172,27 @@ a, button, [role="button"] {
 .reveal-on-scroll-delay-4,
 .reveal-on-scroll-delay-5 {
   opacity: 0;
-  transform: translateY(4rem);
-  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(3rem);
+  transition:
+    opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.reveal-on-scroll-delay-1 { transition-delay: 80ms; }
-.reveal-on-scroll-delay-2 { transition-delay: 200ms; }
-.reveal-on-scroll-delay-3 { transition-delay: 350ms; }
-.reveal-on-scroll-delay-4 { transition-delay: 500ms; }
-.reveal-on-scroll-delay-5 { transition-delay: 650ms; }
+.reveal-on-scroll-delay-1 {
+  transition-delay: 100ms;
+}
+.reveal-on-scroll-delay-2 {
+  transition-delay: 220ms;
+}
+.reveal-on-scroll-delay-3 {
+  transition-delay: 360ms;
+}
+.reveal-on-scroll-delay-4 {
+  transition-delay: 520ms;
+}
+.reveal-on-scroll-delay-5 {
+  transition-delay: 700ms;
+}
 
 .reveal-on-scroll.revealed,
 .reveal-on-scroll-delay-1.revealed,
@@ -141,11 +204,14 @@ a, button, [role="button"] {
   transform: translateY(0);
 }
 
+/* ── Scroll Reveal (images) ── */
+
 .reveal-image {
   opacity: 0;
   transform: scale(1.04);
-  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition:
+    opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .reveal-image.revealed {
@@ -153,18 +219,32 @@ a, button, [role="button"] {
   transform: scale(1);
 }
 
-.spec-line {
-  padding: 1.5rem 0;
-  border-bottom: 1px solid #2a2622;
-  position: relative;
+/* ── Blur Reveal ── */
+
+.reveal-blur {
+  opacity: 0;
+  filter: blur(8px);
+  transform: translateY(1.5rem);
+  transition:
+    opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.spec-line::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  bottom: -1px;
-  width: 40%;
-  height: 1px;
-  background: linear-gradient(90deg, #5a5550, transparent);
+.reveal-blur.revealed {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateY(0);
+}
+
+/* ── Line Draw ── */
+
+.line-draw {
+  transform: scaleX(0);
+  transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: center;
+}
+
+.line-draw.revealed {
+  transform: scaleX(1);
 }
