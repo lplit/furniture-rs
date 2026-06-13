@@ -104,7 +104,7 @@ export default function Home() {
             priority
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0908]/95 via-[#0a0908]/45 to-[#0a0908]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0908]/80 via-[#0a0908]/30 to-[#0a0908]/90" />
         </div>
 
         <div className="relative z-10 mx-auto max-w-4xl px-8 pt-24 text-center">
@@ -119,9 +119,11 @@ export default function Home() {
             className="animate-fade-in-up mb-16 text-[2.5rem] font-light leading-[1.05] tracking-tight text-[#e8e4df] sm:text-6xl lg:text-[5rem] delay-500"
             style={{ fontFamily: "var(--font-cormorant)" }}
           >
-            Technology that belongs
+            The most powerful machine
             <br />
-            <em className="font-light">in your life.</em>
+            in your home should be
+            <br />
+            <em className="font-light">the most beautiful object in it.</em>
           </h1>
 
           <div className="animate-fade-in-up delay-1200 mx-auto mb-16 h-px w-10 bg-[#c4a265]/40" />
@@ -171,16 +173,17 @@ export default function Home() {
             className="reveal-on-scroll-delay-1 text-[2.5rem] font-light leading-[1.1] tracking-tight text-[#e8e4df] sm:text-[3.75rem] lg:text-[5rem]"
             style={{ fontFamily: "var(--font-cormorant)" }}
           >
-            Your hardware deserves
+            We reject the idea that
             <br />
-            better furniture.
+            computers belong in closets.
           </h2>
 
           <p className="reveal-blur reveal-on-scroll-delay-2 mx-auto mt-16 max-w-lg text-[15px] leading-[2] text-[#8a8279]">
-            We believe powerful computing has earned its place in the rooms we
-            live in. Not hidden behind a desk. Not banished to a closet.{" "}
+            The industry has spent decades telling you to hide your hardware.
+            Under the desk. In the basement. Behind a door you hope no one
+            opens.{" "}
             <span className="text-[#e8e4df]/60">
-              Seen. Touched. Belonging.
+              We spent those decades learning joinery.
             </span>
           </p>
 
@@ -188,7 +191,7 @@ export default function Home() {
             className="reveal-on-scroll-delay-3 mx-auto mt-8 max-w-sm text-[11px] leading-[2] tracking-wide text-[#5a5550]/40"
             style={{ fontFamily: "var(--font-geist-mono)" }}
           >
-            Furniture that happens to house a computer.
+            We happen to make a computer case.
           </p>
         </div>
       </section>
@@ -214,16 +217,16 @@ export default function Home() {
                 className="reveal-on-scroll text-[2.5rem] font-light leading-[1.1] tracking-tight text-[#e8e4df] sm:text-[3.5rem]"
                 style={{ fontFamily: "var(--font-cormorant)" }}
               >
-                It knows when
+                It disappears
                 <br />
-                to disappear.
+                when you want it to.
               </h2>
               <p className="reveal-blur reveal-on-scroll-delay-1 mt-10 text-[15px] leading-[2] text-[#8a8279]">
-                Front-to-back airflow without a single fan visible from the
-                outside. Built-in cable channels that route every wire out of
-                sight. A removable back panel, radiator mounts, and grommeted
-                pass-throughs for water cooling. When the glass doors close,
-                it all goes away.
+                Front-to-back airflow. Not a single fan visible from the
+                outside. Cable channels that route every wire out of sight.
+                Removable back panel. Radiator mounts and grommeted
+                pass-throughs for water cooling. Close the glass doors and
+                there is no evidence this was ever a computer.
               </p>
               <div className="reveal-on-scroll-delay-2 mt-16 flex gap-12">
                 <Spec value="8U" label="capacity" />
@@ -247,17 +250,15 @@ export default function Home() {
                 className="reveal-on-scroll text-[2.5rem] font-light leading-[1.1] tracking-tight text-[#e8e4df] sm:text-[3.5rem]"
                 style={{ fontFamily: "var(--font-cormorant)" }}
               >
-                The only thing
+                It demands attention
                 <br />
-                we left raw is
-                <br />
-                the wood.
+                when you don&apos;t.
               </h2>
               <p className="reveal-blur reveal-on-scroll-delay-1 mt-10 text-[15px] leading-[2] text-[#8a8279]">
-                Real walnut veneer over solid hardwood. Traditional joinery with
-                no visible fasteners. Tempered glass doors with soft-close
-                hinges. Dust-filtered and lockable. Proportioned like a
-                credenza, standing on tapered mid-century legs.
+                Real walnut veneer over solid hardwood. Traditional joinery.
+                No visible fasteners. No plastic bezels. Tempered glass doors
+                with soft-close hinges. Dust-filtered. Lockable. Proportioned
+                like a credenza, standing on tapered mid-century legs.
               </p>
               <div className="reveal-on-scroll-delay-2 mt-16 flex gap-12">
                 <Spec value="24–34&quot;" label="depth" />
@@ -284,43 +285,34 @@ export default function Home() {
         className="snap-section relative flex items-end bg-[#0a0908] pb-24 pt-32"
       >
         <div className="w-full">
-          <div className="mb-16 px-8">
-            <p
-              className="reveal-on-scroll text-[2.25rem] font-light tracking-tight text-[#e8e4df] sm:text-[3.25rem]"
-              style={{ fontFamily: "var(--font-cormorant)" }}
-            >
-              In situ.
-            </p>
-          </div>
           <div className="group/gallery relative">
             <div className="gallery-scroll flex gap-3 overflow-x-auto px-8 pb-4">
               {[
-                { src: "/products/1.jpg", alt: "", caption: "Full view" },
-                { src: "/products/2.jpeg", alt: "", caption: "Glass doors" },
-                { src: "/products/3.jpeg", alt: "", caption: "Interior detail" },
+                { src: "/products/1.jpg", alt: "" },
+                { src: "/products/2.jpeg", alt: "" },
+                { src: "/products/3.jpeg", alt: "" },
               ].map((img) => (
                 <div
                   key={img.src}
-                  className="reveal-image relative aspect-[4/3] min-w-[80vw] flex-shrink-0 overflow-hidden rounded-sm sm:min-w-[600px]"
+                  className="reveal-image relative aspect-[4/3] min-w-[85vw] flex-shrink-0 overflow-hidden rounded-sm sm:min-w-[700px]"
                 >
                   <Image
                     src={img.src}
                     alt={img.alt}
                     fill
                     className="object-cover"
-                    sizes="80vw"
+                    sizes="85vw"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a0908]/40 via-transparent to-transparent" />
-                  <p
-                    className="absolute bottom-4 left-4 text-[9px] uppercase tracking-[0.3em] text-[#e8e4df]/50"
-                    style={{ fontFamily: "var(--font-geist-mono)" }}
-                  >
-                    {img.caption}
-                  </p>
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a0908]/30 via-transparent to-transparent" />
                 </div>
               ))}
             </div>
             <div className="pointer-events-none absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#0a0908] to-transparent" />
+          </div>
+          <div className="mt-8 flex justify-center gap-2 px-8">
+            <span className="h-px w-6 bg-[#c4a265]/20" />
+            <span className="h-px w-6 bg-[#c4a265]/10" />
+            <span className="h-px w-6 bg-[#c4a265]/10" />
           </div>
         </div>
       </section>
@@ -344,10 +336,9 @@ export default function Home() {
           </h2>
 
           <p className="reveal-blur reveal-on-scroll-delay-2 mx-auto mt-16 max-w-lg text-[15px] leading-[2] text-[#8a8279]">
-            The result of every decision on this page. Front-to-back airflow.
-            Built-in cable management. Water cooling ready. Lockable tempered
-            glass and dust filtration. All dressed in real walnut veneer on
-            tapered mid-century legs.
+            Front-to-back airflow. Built-in cable management. Water cooling
+            ready. Lockable tempered glass and dust filtration. Real walnut
+            veneer on tapered mid-century legs.
           </p>
 
           <div className="reveal-on-scroll-delay-3 mx-auto my-20 h-px w-12 bg-[#c4a265]/15 line-draw" />
@@ -382,9 +373,11 @@ export default function Home() {
             className="reveal-on-scroll-delay-1 text-[2.5rem] font-light leading-[1.1] tracking-tight text-[#e8e4df] sm:text-[3.75rem] lg:text-[5rem]"
             style={{ fontFamily: "var(--font-cormorant)" }}
           >
-            Technology that belongs
+            The most powerful machine
             <br />
-            <em className="font-light">in your life.</em>
+            in your home should be
+            <br />
+            <em className="font-light">the most beautiful object in it.</em>
           </h2>
 
           <p
@@ -414,33 +407,33 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="border-t border-[#5a5550]/8 bg-[#0a0908] py-16">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-8 sm:flex-row">
+      <footer className="border-t border-[#5a5550]/8 bg-[#0a0908] py-12">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-8 sm:flex-row">
           <p
-            className="text-[9px] uppercase tracking-[0.3em] text-[#5a5550]/50"
+            className="text-[9px] uppercase tracking-[0.3em] text-[#5a5550]/40"
             style={{ fontFamily: "var(--font-geist-mono)" }}
           >
             &copy; {new Date().getFullYear()} Atelier Rack
           </p>
           <div
-            className="flex gap-12"
+            className="flex gap-8"
             style={{ fontFamily: "var(--font-geist-mono)" }}
           >
             <a
               href="#"
-              className="text-[9px] uppercase tracking-[0.3em] text-[#5a5550]/50 transition-colors duration-300 hover:text-[#c4a265]"
+              className="text-[9px] uppercase tracking-[0.3em] text-[#5a5550]/40 transition-colors duration-300 hover:text-[#c4a265]"
             >
               Contact
             </a>
             <a
               href="#"
-              className="text-[9px] uppercase tracking-[0.3em] text-[#5a5550]/50 transition-colors duration-300 hover:text-[#c4a265]"
+              className="text-[9px] uppercase tracking-[0.3em] text-[#5a5550]/40 transition-colors duration-300 hover:text-[#c4a265]"
             >
               Privacy
             </a>
             <a
               href="#"
-              className="text-[9px] uppercase tracking-[0.3em] text-[#5a5550]/50 transition-colors duration-300 hover:text-[#c4a265]"
+              className="text-[9px] uppercase tracking-[0.3em] text-[#5a5550]/40 transition-colors duration-300 hover:text-[#c4a265]"
             >
               Terms
             </a>

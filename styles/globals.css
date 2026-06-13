@@ -91,7 +91,7 @@ button,
     transform: scale(1.08);
   }
   to {
-    opacity: 0.22;
+    opacity: 0.35;
     transform: scale(1);
   }
 }
