@@ -70,6 +70,7 @@ export default function Home() {
   const materialsRef = useReveal();
   const disappearRef = useReveal();
   const seenRef = useReveal();
+  const doorsRef = useReveal();
   const galleryRef = useReveal();
   const specsRef = useReveal();
   const featuresRef = useReveal();
@@ -150,18 +151,16 @@ export default function Home() {
             className="animate-fade-in-up mb-6 text-[3rem] font-light leading-[1.05] tracking-tight text-[#e8e4df] sm:text-[4.5rem] lg:text-[6rem] delay-500"
             style={{ fontFamily: "var(--font-cormorant)" }}
           >
-            Technology that
+            Your most powerful machine.
             <br />
-            <em className="font-light gradient-text-warm">belongs in your life.</em>
+            <em className="font-light gradient-text-warm">Your most beautiful object.</em>
           </h1>
 
           <p
             className="animate-fade-in-up mx-auto mb-14 max-w-md text-[13px] leading-[2] text-[#8a8279]/80 delay-1200"
             style={{ fontFamily: "var(--font-geist-mono)" }}
           >
-            An 8U 19&quot; ATX rack, crafted in walnut.
-            <br />
-            No plastic. No compromise.
+            An 8U rack you don&apos;t hide.
           </p>
 
           <div className="animate-fade-in-up flex flex-col items-center justify-center gap-4 sm:flex-row delay-1800">
@@ -188,36 +187,29 @@ export default function Home() {
         <div className="relative z-10 mx-auto max-w-3xl px-6 text-center sm:px-8">
           <div className="reveal-on-scroll mx-auto mb-16 h-px w-16 bg-[#c4a265]/20 line-draw" />
 
-          <p
-            className="reveal-on-scroll mb-8 text-[10px] uppercase tracking-[0.4em] text-[#c4a265]/50"
-            style={{ fontFamily: "var(--font-geist-mono)" }}
-          >
-            Why we exist
-          </p>
-
           <h2
             className="reveal-on-scroll-delay-1 text-[2.25rem] font-light leading-[1.08] tracking-tight text-[#e8e4df] sm:text-[3.5rem] lg:text-[4.5rem]"
             style={{ fontFamily: "var(--font-cormorant)" }}
           >
-            The computer industry
+            Every case ever made
             <br />
-            has one rule.
+            was designed to hide.
             <br />
-            <span className="gradient-text-warm">We broke it.</span>
+            <span className="gradient-text-warm">Ours was designed to stay.</span>
           </h2>
 
           <p className="reveal-blur reveal-on-scroll-delay-2 mx-auto mt-14 max-w-lg text-[16px] leading-[1.9] text-[#8a8279]">
-            Hide the evidence. Under the desk. In the basement. Behind a door
-            you hope no one opens. Every rack, every case, every enclosure
-            ever made was designed to be{" "}
-            <span className="text-[#e8e4df]/50">apologized for.</span>
+            Under the desk. In the basement. Where you hope no one looks.
+            An industry that treats your hardware like something
+            to{" "}
+            <span className="text-[#e8e4df]/50">apologize for.</span>
           </p>
 
           <p
-            className="reveal-on-scroll-delay-3 mx-auto mt-8 max-w-sm text-[10px] leading-[2] tracking-wide text-[#5a5550]/30"
+            className="reveal-on-scroll-delay-3 mx-auto mt-8 max-w-sm text-[11px] leading-[2] tracking-wide text-[#5a5550]/40"
             style={{ fontFamily: "var(--font-geist-mono)" }}
           >
-            We happen to make a computer case. Want one?
+            We don&apos;t.
           </p>
         </div>
       </section>
@@ -239,25 +231,24 @@ export default function Home() {
             className="reveal-on-scroll-delay-1 text-[2.25rem] font-light leading-[1.08] tracking-tight text-[#e8e4df] sm:text-[3.5rem] lg:text-[4.5rem]"
             style={{ fontFamily: "var(--font-cormorant)" }}
           >
-            Walnut. Glass. Brass.
+            Three materials.
             <br />
-            <span className="gradient-text-subtle">That&apos;s the entire palette.</span>
+            <span className="gradient-text-subtle">No compromises.</span>
           </h2>
 
           <p className="reveal-blur reveal-on-scroll-delay-2 mx-auto mt-14 max-w-lg text-[16px] leading-[1.9] text-[#8a8279]">
-            Real walnut veneer over solid hardwood. Tempered glass doors.
-            Brass accents. Not a single gram of plastic. No visible fasteners.
-            No bezels. No excuses.{" "}
+            Walnut veneer over solid hardwood. Tempered glass doors. Brass
+            hardware. Not a gram of plastic. Not a visible screw.{" "}
             <span className="text-[#e8e4df]/50">
-              Materials that age with grace, not degrade with time.
+              Things that age beautifully.
             </span>
           </p>
 
           <div className="reveal-on-scroll-delay-3 mx-auto mt-14 flex flex-wrap items-center justify-center gap-3">
-            <span className="feature-pill">No Plastic</span>
-            <span className="feature-pill">Walnut Veneer</span>
-            <span className="feature-pill">Tempered Glass</span>
-            <span className="feature-pill">Brass Accents</span>
+            <span className="feature-pill">Zero Plastic</span>
+            <span className="feature-pill">Walnut</span>
+            <span className="feature-pill">Glass</span>
+            <span className="feature-pill">Brass</span>
             <span className="feature-pill">Solid Hardwood</span>
           </div>
         </div>
@@ -295,11 +286,11 @@ export default function Home() {
                 when you want it to.
               </h2>
               <p className="reveal-blur reveal-on-scroll-delay-2 mt-8 text-[15px] leading-[1.9] text-[#8a8279]">
-                No fans. No wires. No evidence. Front-to-back airflow routed
-                through sound-dampened channels. Cable management that hides
-                every connection. Radiator mounts and grommeted pass-throughs
-                for water cooling. Close the glass doors and it&apos;s just
-                furniture.
+                Front-to-back airflow through sound-dampened channels. Every
+                cable, hidden.{" "}
+                <span className="text-[#e8e4df]/50">
+                  Close the doors. It&apos;s furniture.
+                </span>
               </p>
               <div className="reveal-on-scroll-delay-3 mt-12 grid grid-cols-3 gap-4">
                 <Spec value="8U" label="capacity" />
@@ -334,12 +325,10 @@ export default function Home() {
                 when you don&apos;t.
               </h2>
               <p className="reveal-blur reveal-on-scroll-delay-2 mt-8 text-[15px] leading-[1.9] text-[#8a8279]">
-                Run your hand across the grain. Traditional joinery. Soft-close
-                hinges that glide the last inch in silence. Dust-filtered.
-                Lockable. Proportioned like a credenza on tapered mid-century
-                legs.{" "}
+                Traditional joinery. Tapered mid-century legs.
+                Hinges that glide the last inch.{" "}
                 <span className="text-[#e8e4df]/50">
-                  It doesn&apos;t ask to be noticed. It just is.
+                  It earns its place.
                 </span>
               </p>
               <div className="reveal-on-scroll-delay-3 mt-12 grid grid-cols-3 gap-4">
@@ -376,14 +365,14 @@ export default function Home() {
             className="text-[10px] uppercase tracking-[0.4em] text-[#c4a265]/40"
             style={{ fontFamily: "var(--font-geist-mono)" }}
           >
-            Built for those who notice
+            Unmistakable.
           </p>
         </div>
       </section>
 
       {/* ── THE DOORS ── */}
       <section
-        ref={galleryRef}
+        ref={doorsRef}
         className="snap-section relative flex items-center justify-center bg-[#0a0908] py-36 sm:py-44"
       >
         <div className="relative z-10 mx-auto max-w-6xl px-6 sm:px-8">
@@ -403,13 +392,12 @@ export default function Home() {
                 <br />
                 just to close them
                 <br />
-                <span className="gradient-text-subtle">again.</span>
+                again.
               </h2>
               <p className="reveal-blur reveal-on-scroll-delay-2 mt-8 text-[15px] leading-[1.9] text-[#8a8279]">
-                Tempered glass. Soft-close hinges that glide the last inch in
-                silence. The kind of detail you stop noticing in furniture
-                because it&apos;s done right. In a computer case, it&apos;s
-                unheard of. We did it anyway.
+                <span className="text-[#e8e4df]/50">
+                  Expected in furniture. Unprecedented in a rack.
+                </span>
               </p>
             </div>
             <div className="reveal-image image-frame relative aspect-[4/3] overflow-hidden">
@@ -426,7 +414,10 @@ export default function Home() {
       </section>
 
       {/* ── GALLERY ── */}
-      <section className="relative bg-[#0c0b09] py-24 sm:py-32">
+      <section
+        ref={galleryRef}
+        className="relative bg-[#0c0b09] py-24 sm:py-32"
+      >
         <div className="w-full">
           <div className="group/gallery relative">
             <div className="gallery-scroll flex gap-4 overflow-x-auto px-6 pb-4 sm:px-8">
@@ -437,7 +428,7 @@ export default function Home() {
               ].map((img) => (
                 <div
                   key={img.src}
-                  className="reveal-image image-frame relative aspect-[16/10] min-w-[85vw] flex-shrink-0 overflow-hidden sm:min-w-[700px]"
+                  className="image-frame relative aspect-[16/10] min-w-[85vw] flex-shrink-0 overflow-hidden sm:min-w-[700px]"
                 >
                   <Image
                     src={img.src}
@@ -480,11 +471,7 @@ export default function Home() {
           </h2>
 
           <p className="reveal-blur reveal-on-scroll-delay-2 mx-auto mt-14 max-w-lg text-[16px] leading-[1.9] text-[#8a8279]">
-            Front-to-back airflow. Cable management. Water cooling. Lockable
-            glass. Dust filtration.{" "}
-            <span className="text-[#e8e4df]/50">
-              Everything you need. Nothing you don&apos;t.
-            </span>
+            <span className="text-[#e8e4df]/50">Everything you need. Nothing you don&apos;t.</span>
           </p>
 
           <div className="reveal-on-scroll-delay-3 mx-auto my-16 h-px w-12 bg-[#c4a265]/10 line-draw" />
@@ -578,7 +565,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── FEATURES GRID ── */}
+      {/* ── FEATURES ── */}
       <section
         ref={featuresRef}
         className="relative bg-[#0c0b09] py-36 sm:py-44"
@@ -590,7 +577,7 @@ export default function Home() {
             className="reveal-on-scroll mb-8 text-center text-[10px] uppercase tracking-[0.4em] text-[#c4a265]/50"
             style={{ fontFamily: "var(--font-geist-mono)" }}
           >
-            Built Different
+            Inside
           </p>
 
           <h2
@@ -602,28 +589,28 @@ export default function Home() {
 
           <div className="reveal-stagger-children grid gap-4 sm:grid-cols-2">
             <Feature
-              title="Sound-Dampened Channels"
-              description="Front-to-back airflow routed through acoustic foam. Your rack is heard, not heard."
+              title="Silent Airflow"
+              description="Sound-dampened channels. Barely there."
             />
             <Feature
-              title="Zero Visible Cabling"
-              description="Every wire hidden. Every connection managed. The back is as clean as the front."
+              title="Invisible Cabling"
+              description="Out of sight. The back is as clean as the front."
             />
             <Feature
-              title="Water Cooling Ready"
-              description="Radiator mounts and grommeted pass-throughs. Your cooling, your way."
+              title="Water Cooling"
+              description="Radiator mounts. Grommeted pass-throughs. Your setup, your way."
             />
             <Feature
-              title="Mid-Century Proportion"
-              description="Tapered legs. Soft-close hinges. A credenza that happens to house a workstation."
+              title="Mid-Century Design"
+              description="Tapered legs. Credenza proportions. A desk that happens to compute."
             />
             <Feature
-              title="Dust-Filtered Intake"
-              description="Removable filters at every intake. Your hardware stays clean."
+              title="Dust Filtered"
+              description="Removable filters at every intake. Hardware stays clean."
             />
             <Feature
-              title="Lockable Glass Doors"
-              description="Tempered glass that locks. Beautiful and secure."
+              title="Lockable Glass"
+              description="Tempered. Lockable. Beautiful."
             />
           </div>
         </div>
@@ -649,32 +636,16 @@ export default function Home() {
         <div className="relative z-10 mx-auto max-w-3xl px-6 text-center sm:px-8">
           <div className="reveal-on-scroll mx-auto mb-16 h-px w-16 bg-[#c4a265]/20 line-draw" />
 
-          <p
-            className="reveal-on-scroll mb-8 text-[10px] uppercase tracking-[0.4em] text-[#c4a265]/50"
-            style={{ fontFamily: "var(--font-geist-mono)" }}
-          >
-            Atelier Rack
-          </p>
-
           <h2
             className="reveal-on-scroll-delay-1 text-[2.5rem] font-light leading-[1.05] tracking-tight text-[#e8e4df] sm:text-[3.75rem] lg:text-[5rem]"
             style={{ fontFamily: "var(--font-cormorant)" }}
           >
-            The most powerful machine
+            Your space deserves better
             <br />
-            in your home should be
-            <br />
-            <span className="gradient-text-warm">the most beautiful object in it.</span>
+            <span className="gradient-text-warm">than a black box.</span>
           </h2>
 
-          <p
-            className="reveal-blur reveal-on-scroll-delay-2 mx-auto mt-10 mb-4 max-w-sm text-[14px] leading-[2] text-[#8a8279]/70"
-            style={{ fontFamily: "var(--font-geist-mono)" }}
-          >
-            Your room deserves better than a black box.
-          </p>
-
-          <div className="reveal-on-scroll-delay-3 my-8">
+          <div className="reveal-on-scroll-delay-2 my-10">
             <p
               className="text-[3rem] font-light tracking-tight gradient-text-warm sm:text-[4rem]"
               style={{ fontFamily: "var(--font-cormorant)" }}
@@ -685,11 +656,11 @@ export default function Home() {
               className="mt-3 text-[9px] uppercase tracking-[0.3em] text-[#5a5550]/40"
               style={{ fontFamily: "var(--font-geist-mono)" }}
             >
-              Free shipping &middot; Continental US
+              Free shipping. Continental US.
             </p>
           </div>
 
-          <div className="reveal-on-scroll-delay-4 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <div className="reveal-on-scroll-delay-3 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <a href="#" className="apple-btn apple-btn-primary" style={{ padding: "16px 48px" }}>
               Pre-order Now
             </a>
