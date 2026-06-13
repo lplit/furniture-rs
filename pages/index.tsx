@@ -50,9 +50,7 @@ export default function Home() {
     <>
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
-          navSolid
-            ? "bg-[#050506]/80 backdrop-blur-3xl"
-            : "bg-transparent"
+          navSolid ? "bg-[#050506]/80 backdrop-blur-3xl" : "bg-transparent"
         }`}
       >
         <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-6">
@@ -65,9 +63,7 @@ export default function Home() {
           </a>
           <div
             className={`transition-all duration-500 ${
-              navSolid
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-2 pointer-events-none"
+              navSolid ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2 pointer-events-none"
             }`}
           >
             <a href="#cta" className="link-arrow">Pre-order</a>
@@ -101,7 +97,7 @@ export default function Home() {
           >
             The computer that belongs
             <br />
-            <em className="font-light gradient-amber">in your living room.</em>
+            <em className="font-light gradient-amber text-glow-amber">in your living room.</em>
           </h1>
 
           <p
@@ -125,7 +121,7 @@ export default function Home() {
       <section
         id="belief"
         ref={whyRef}
-        className="snap-section section-glow-rose relative flex items-center justify-center bg-[#100808] py-44 sm:py-56"
+        className="snap-section section-glow-rose relative flex items-center justify-center bg-mesh-rose py-44 sm:py-56"
       >
         <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
           <div className="reveal-on-scroll mx-auto mb-20 h-px w-16 line-draw divider-rose" />
@@ -138,7 +134,7 @@ export default function Home() {
             <br />
             to hide.
             <br />
-            <span className="gradient-rose">We built one to keep.</span>
+            <span className="gradient-rose text-glow-rose">We built one to keep.</span>
           </h2>
 
           <p className="reveal-blur reveal-on-scroll-delay-2 mx-auto mt-20 max-w-2xl text-[17px] leading-[1.9] text-[#f0ece6]/45">
@@ -160,7 +156,7 @@ export default function Home() {
       {/* ── MATERIALS ── */}
       <section
         ref={materialsRef}
-        className="snap-section section-glow-amber relative flex items-center justify-center bg-[#0c0a06] py-44 sm:py-56"
+        className="snap-section section-glow-amber relative flex items-center justify-center bg-mesh-earth py-44 sm:py-56"
       >
         <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
           <h2
@@ -200,11 +196,11 @@ export default function Home() {
       {/* ── HOW: DISAPPEAR ── */}
       <section
         ref={disappearRef}
-        className="snap-section section-glow-sage relative flex items-center justify-center bg-[#050506] py-44 sm:py-56"
+        className="snap-section section-glow-sage relative flex items-center justify-center bg-mesh-void py-44 sm:py-56"
       >
         <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-8">
           <div className="grid items-center gap-16 lg:gap-28 sm:grid-cols-2">
-            <div className="reveal-image image-tint-cool relative aspect-[4/3] overflow-hidden rounded-lg">
+            <div className="reveal-image image-tint-cool image-frame-hover relative aspect-[4/3] overflow-hidden rounded-lg">
               <Image
                 src="/products/2.jpeg"
                 alt=""
@@ -214,9 +210,9 @@ export default function Home() {
               />
             </div>
             <div>
-              <p className="reveal-on-scroll mb-4 text-[10px] tracking-[0.3em] color-sage" style={{ fontFamily: "var(--font-geist-mono)" }}>SILENCE</p>
+              <span className="reveal-on-scroll section-label section-label-sage">Silence</span>
               <h2
-                className="reveal-on-scroll-delay-1 section-headline font-light text-[#f0ece6]"
+                className="reveal-on-scroll-delay-1 mt-6 section-headline font-light text-[#f0ece6]"
                 style={{ fontFamily: "var(--font-cormorant)" }}
               >
                 It disappears
@@ -238,14 +234,14 @@ export default function Home() {
       {/* ── HOW: SEEN ── */}
       <section
         ref={seenRef}
-        className="snap-section section-glow-copper relative flex items-center justify-center bg-[#0c0a06] py-44 sm:py-56"
+        className="snap-section section-glow-copper relative flex items-center justify-center bg-mesh-earth py-44 sm:py-56"
       >
         <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-8">
           <div className="grid items-center gap-16 lg:gap-28 sm:grid-cols-2">
             <div className="order-2 sm:order-1">
-              <p className="reveal-on-scroll mb-4 text-[10px] tracking-[0.3em] gradient-copper" style={{ fontFamily: "var(--font-geist-mono)" }}>PRESENCE</p>
+              <span className="reveal-on-scroll section-label section-label-copper">Presence</span>
               <h2
-                className="reveal-on-scroll-delay-1 section-headline font-light text-[#f0ece6]"
+                className="reveal-on-scroll-delay-1 mt-6 section-headline font-light text-[#f0ece6]"
                 style={{ fontFamily: "var(--font-cormorant)" }}
               >
                 It demands attention
@@ -260,7 +256,7 @@ export default function Home() {
               </p>
               <a href="#specs" className="reveal-on-scroll-delay-3 inline-block mt-10 link-arrow">See specs</a>
             </div>
-            <div className="reveal-image image-tint-warm relative order-1 aspect-[4/3] overflow-hidden rounded-lg sm:order-2">
+            <div className="reveal-image image-tint-warm image-frame-hover relative order-1 aspect-[4/3] overflow-hidden rounded-lg sm:order-2">
               <Image
                 src="/products/3.jpeg"
                 alt=""
@@ -283,27 +279,27 @@ export default function Home() {
           sizes="100vw"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#100808] via-[#050506]/30 to-[#050506]/60" />
-        <p className="relative z-10 text-[11px] tracking-[0.4em] color-amber/40" style={{ fontFamily: "var(--font-geist-mono)" }}>UNMISTAKABLE.</p>
+        <p className="relative z-10 text-[11px] tracking-[0.4em] gradient-amber text-glow-amber" style={{ fontFamily: "var(--font-geist-mono)" }}>UNMISTAKABLE.</p>
       </section>
 
       {/* ── THE DOORS ── */}
       <section
         ref={doorsRef}
-        className="snap-section section-glow-violet relative flex items-center justify-center bg-[#050506] py-44 sm:py-56"
+        className="snap-section section-glow-violet relative flex items-center justify-center bg-mesh-violet py-44 sm:py-56"
       >
         <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-8">
           <div className="grid items-center gap-16 lg:gap-28 sm:grid-cols-2">
             <div>
-              <p className="reveal-on-scroll mb-4 text-[10px] tracking-[0.3em] gradient-violet" style={{ fontFamily: "var(--font-geist-mono)" }}>DETAIL</p>
+              <span className="reveal-on-scroll section-label section-label-violet">Detail</span>
               <h2
-                className="reveal-on-scroll-delay-1 section-headline font-light text-[#f0ece6]"
+                className="reveal-on-scroll-delay-1 mt-6 section-headline font-light text-[#f0ece6]"
                 style={{ fontFamily: "var(--font-cormorant)" }}
               >
                 You&apos;ll open them
                 <br />
                 just to close them
                 <br />
-                again.
+                <span className="gradient-violet text-glow-violet">again.</span>
               </h2>
               <p className="reveal-blur reveal-on-scroll-delay-2 mt-10 text-[16px] leading-[1.9] text-[#f0ece6]/45">
                 <span className="text-[#f0ece6]/80">
@@ -313,7 +309,7 @@ export default function Home() {
               </p>
               <a href="#specs" className="reveal-on-scroll-delay-3 inline-block mt-10 link-arrow">See specification</a>
             </div>
-            <div className="reveal-image image-tint-violet relative aspect-[4/3] overflow-hidden rounded-lg">
+            <div className="reveal-image image-tint-violet image-frame-hover relative aspect-[4/3] overflow-hidden rounded-lg">
               <Image
                 src="/products/2.jpeg"
                 alt=""
@@ -329,19 +325,19 @@ export default function Home() {
       {/* ── GALLERY ── */}
       <section
         ref={galleryRef}
-        className="relative bg-[#080c14] py-28 sm:py-40"
+        className="relative bg-mesh-navy py-28 sm:py-40"
       >
         <div className="w-full">
           <div className="group/gallery relative">
             <div className="gallery-scroll flex gap-6 overflow-x-auto px-6 pb-4 sm:px-12">
               {[
-                { src: "/products/1.jpg", alt: "Front view" },
-                { src: "/products/2.jpeg", alt: "Interior view" },
-                { src: "/products/3.jpeg", alt: "Detail view" },
+                { src: "/products/1.jpg", alt: "Front view", tint: "image-tint-warm" },
+                { src: "/products/2.jpeg", alt: "Interior view", tint: "image-tint-violet" },
+                { src: "/products/3.jpeg", alt: "Detail view", tint: "image-tint-pink" },
               ].map((img) => (
                 <div
                   key={img.src}
-                  className="image-tint-warm relative aspect-[16/10] min-w-[85vw] flex-shrink-0 overflow-hidden rounded-lg sm:min-w-[750px]"
+                  className={`${img.tint} image-frame-hover relative aspect-[16/10] min-w-[85vw] flex-shrink-0 overflow-hidden rounded-lg sm:min-w-[750px]`}
                 >
                   <Image src={img.src} alt={img.alt} fill className="object-cover" sizes="85vw" />
                 </div>
@@ -356,7 +352,7 @@ export default function Home() {
       <section
         id="specs"
         ref={specsRef}
-        className="snap-section section-glow-ice relative flex items-center justify-center bg-[#050506] py-44 sm:py-56"
+        className="snap-section section-glow-ice relative flex items-center justify-center bg-mesh-void py-44 sm:py-56"
       >
         <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
           <div className="reveal-on-scroll mx-auto mb-20 h-px w-16 line-draw divider-amber" />
@@ -367,7 +363,7 @@ export default function Home() {
           >
             8U. 19-inch. ATX.
             <br />
-            <span className="gradient-amber">Walnut.</span>
+            <span className="gradient-amber text-glow-amber">Walnut.</span>
           </h2>
 
           <div className="reveal-on-scroll-delay-2 mx-auto my-20 h-px w-12 bg-[#e8a849]/10 line-draw" />
@@ -375,15 +371,15 @@ export default function Home() {
           <div className="reveal-stagger-children grid grid-cols-2 gap-x-12 gap-y-12 sm:grid-cols-3 text-left max-w-2xl mx-auto">
             <div>
               <p className="text-[9px] tracking-[0.2em] text-[#b8c4d0]/25 mb-2" style={{ fontFamily: "var(--font-geist-mono)" }}>CAPACITY</p>
-              <p className="text-[28px] font-light gradient-ice leading-none sm:text-[36px]" style={{ fontFamily: "var(--font-cormorant)" }}>8U</p>
+              <p className="text-[28px] font-light gradient-ice text-glow-ice leading-none sm:text-[36px]" style={{ fontFamily: "var(--font-cormorant)" }}>8U</p>
             </div>
             <div>
               <p className="text-[9px] tracking-[0.2em] text-[#b8c4d0]/25 mb-2" style={{ fontFamily: "var(--font-geist-mono)" }}>STANDARD</p>
-              <p className="text-[28px] font-light gradient-ice leading-none sm:text-[36px]" style={{ fontFamily: "var(--font-cormorant)" }}>19&quot;</p>
+              <p className="text-[28px] font-light gradient-ice text-glow-ice leading-none sm:text-[36px]" style={{ fontFamily: "var(--font-cormorant)" }}>19&quot;</p>
             </div>
             <div>
               <p className="text-[9px] tracking-[0.2em] text-[#b8c4d0]/25 mb-2" style={{ fontFamily: "var(--font-geist-mono)" }}>COMPATIBLE</p>
-              <p className="text-[28px] font-light gradient-ice leading-none sm:text-[36px]" style={{ fontFamily: "var(--font-cormorant)" }}>ATX</p>
+              <p className="text-[28px] font-light gradient-ice text-glow-ice leading-none sm:text-[36px]" style={{ fontFamily: "var(--font-cormorant)" }}>ATX</p>
             </div>
             <div>
               <p className="text-[9px] tracking-[0.2em] text-[#b8c4d0]/25 mb-2" style={{ fontFamily: "var(--font-geist-mono)" }}>DEPTH RANGE</p>
@@ -391,11 +387,11 @@ export default function Home() {
             </div>
             <div>
               <p className="text-[9px] tracking-[0.2em] text-[#b8c4d0]/25 mb-2" style={{ fontFamily: "var(--font-geist-mono)" }}>VENEER</p>
-              <p className="text-[28px] font-light gradient-amber leading-none sm:text-[36px]" style={{ fontFamily: "var(--font-cormorant)" }}>Walnut</p>
+              <p className="text-[28px] font-light gradient-amber text-glow-amber leading-none sm:text-[36px]" style={{ fontFamily: "var(--font-cormorant)" }}>Walnut</p>
             </div>
             <div>
               <p className="text-[9px] tracking-[0.2em] text-[#b8c4d0]/25 mb-2" style={{ fontFamily: "var(--font-geist-mono)" }}>GLASS DOORS</p>
-              <p className="text-[28px] font-light gradient-rose leading-none sm:text-[36px]" style={{ fontFamily: "var(--font-cormorant)" }}>Soft-close</p>
+              <p className="text-[28px] font-light gradient-rose text-glow-rose leading-none sm:text-[36px]" style={{ fontFamily: "var(--font-cormorant)" }}>Soft-close</p>
             </div>
           </div>
         </div>
@@ -404,15 +400,15 @@ export default function Home() {
       {/* ── FEATURES ── */}
       <section
         ref={featuresRef}
-        className="relative bg-[#0a0f0a] py-44 sm:py-56"
+        className="relative bg-mesh-forest py-44 sm:py-56"
       >
         <div className="relative z-10 mx-auto max-w-4xl px-6 sm:px-8">
           <div className="reveal-on-scroll mx-auto mb-20 h-px w-16 line-draw divider-violet" />
 
-          <p className="reveal-on-scroll mb-4 text-[10px] tracking-[0.3em] color-sage text-center" style={{ fontFamily: "var(--font-geist-mono)" }}>INSIDE</p>
+          <span className="reveal-on-scroll section-label section-label-violet">Inside</span>
 
           <h2
-            className="reveal-on-scroll-delay-1 mb-20 text-center section-headline font-light text-[#f0ece6]"
+            className="reveal-on-scroll-delay-1 mt-6 mb-20 text-center section-headline font-light text-[#f0ece6]"
             style={{ fontFamily: "var(--font-cormorant)" }}
           >
             One detail after another.
@@ -451,7 +447,7 @@ export default function Home() {
       <section
         id="cta"
         ref={ctaRef}
-        className="snap-section section-glow-flame relative flex items-center justify-center overflow-hidden bg-[#050506] py-44 sm:py-56"
+        className="snap-section section-glow-flame relative flex items-center justify-center overflow-hidden bg-mesh-flame py-44 sm:py-56"
       >
         <div className="absolute inset-0">
           <Image
@@ -473,12 +469,12 @@ export default function Home() {
           >
             Your space deserves better
             <br />
-            <span className="gradient-flame">than a black box.</span>
+            <span className="gradient-flame text-glow-flame">than a black box.</span>
           </h2>
 
           <div className="reveal-on-scroll-delay-2 my-14">
             <p
-              className="big-number font-light tracking-tight gradient-gold"
+              className="big-number font-light tracking-tight gradient-gold text-glow-gold glow-pulse"
               style={{ fontFamily: "var(--font-cormorant)" }}
             >
               $2,200
