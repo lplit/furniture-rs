@@ -2,40 +2,39 @@
 
 ## Commands
 
-- **Package manager**: pnpm (not npm/yarn)
-- **Dev server**: `pnpm dev`
+- **Package manager**: pnpm (lockfile `pnpm-lock.yaml`)
+- **Dev**: `pnpm dev` → http://localhost:3000
 - **Build**: `pnpm build`
-- **Lint**: `pnpm lint` (runs `eslint` with flat config, not `next lint`)
-- **No test runner configured** — no `test` script exists
+- **Lint**: `pnpm lint` — runs `eslint` directly (flat config), not `next lint`
+- **No test runner** — `package.json` has no `test` script
+- **No formatter/typecheck scripts** — `tsc` and formatting are not automated
 
 ## Architecture
 
-- **Next.js Pages Router** (not App Router). Routes live in `pages/`.
-- **Tailwind CSS v4** — uses `@import "tailwindcss"` and `@theme inline` in `styles/globals.css`, not a `tailwind.config.*` file.
-- **Path alias**: `@/*` maps to project root (e.g., `@/styles/globals.css`).
-- **ESLint flat config** (`eslint.config.mjs`) with `eslint-config-next/core-web-vitals` + typescript.
-- Product images are stored in `public/products/`.
+- **Next.js 16.2.9 Pages Router** — routes live in `pages/`; there is no `app/` directory
+- **React 19.2.4** — note the installed version when consulting React docs
+- **Tailwind CSS v4** with `@tailwindcss/postcss` — config lives in `styles/globals.css` via `@import "tailwindcss"` and `@theme inline`; there is no `tailwind.config.*`
+- **Path alias**: `@/*` maps to project root (`tsconfig.json` `paths`)
+- **ESLint flat config** in `eslint.config.mjs`: imports `eslint-config-next/core-web-vitals` and `eslint-config-next/typescript`
+- Product images: `public/products/`
 
-## Installed Skills
+## Useful conventions from the current landing page
 
-- **next-best-practices** (`.agents/skills/next-best-practices/`) — Next.js patterns for file conventions, RSC boundaries, async APIs, metadata, error handling, etc.
-- **next-cache-components** (`.agents/skills/next-cache-components/`) — Next.js 16 `use cache`, `cacheLife`, `cacheTag`, PPR patterns.
-- **next-upgrade** (`.agents/skills/next-upgrade/`) — Upgrade guide for Next.js versions.
+- Global styles and design tokens (walnut/cream/brass colors, reveal animations, section glows, typography helpers) are defined in `styles/globals.css`
+- Custom font variables set in `pages/_app.tsx`: `--font-geist-sans`, `--font-geist-mono`, `--font-cormorant`
+- Scroll-reveal classes rely on JS adding a `revealed` class (not built into Tailwind)
+- `PRODUCT.md` holds product specs and dimensions master list
 
-Note: These skills reference App Router conventions. This project uses **Pages Router**, so apply advice accordingly (e.g., `pages/` routing, `getServerSideProps`/`getStaticProps` instead of server components).
+## Installed skills (repo-local)
 
-## Product — Atelier Rack
+- `.agents/skills/next-best-practices/`
+- `.agents/skills/next-cache-components/`
+- `.agents/skills/next-upgrade/`
 
-This is a landing page for a premium 8U 19" ATX rack styled as luxury walnut furniture (credence-style).
+These skills reference App Router conventions. This project uses **Pages Router**, so apply advice accordingly (`pages/` routing, `getServerSideProps`/`getStaticProps` instead of server components).
 
-**Vision**: Powerful computing should enhance living spaces, not clash with them. Technology that belongs in your life.
+## What to avoid
 
-**Landing page sections** (follow Why > How > What order):
-1. **Hero**: Walnut credenza image + "Technology that belongs in your life." CTAs: Discover / Shop
-2. **Why**: Purpose statement — tech should complement living spaces
-3. **How**: Craftsmanship, quiet operation, seamless integration
-4. **What**: Specs (8U, 19" rails, ATX, 24-34" depth, wood veneer, tapered legs, soft-close, glass doors), features, gallery
-5. **Benefits & Gallery**
-6. **CTA footer**
-
-**Design direction**: Minimalist luxury, walnut tones, high-res imagery, responsive, image-heavy. Price range $800-1500.
+- Do not run `npm install` or `yarn install` — use `pnpm install`
+- Do not look for a `tailwind.config.*` file
+- Do not look for an `app/` directory or RSCs
