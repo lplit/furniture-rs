@@ -19,6 +19,9 @@
 
 html { scroll-behavior: smooth; }
 
+h1, h2, h3 { text-wrap: balance; }
+p { text-wrap: pretty; }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal-on-scroll, .reveal-on-scroll-delay-1, .reveal-on-scroll-delay-2, .reveal-on-scroll-delay-3, .reveal-on-scroll-delay-4, .reveal-on-scroll-delay-5, .reveal-image, .reveal-blur, .reveal-scale { opacity: 1 !important; transform: none !important; filter: none !important; }
@@ -129,6 +132,7 @@ a, button, [role="button"] { cursor: pointer; }
 }
 .link-arrow:hover { gap: 14px; color: #f0c06a; }
 .link-arrow::after { content: "→"; }
+.link-arrow:focus-visible { outline: 1px solid #f0c06a; outline-offset: 4px; border-radius: 2px; }
 
 .color-amber { color: #e8a849; }
 .color-rose { color: #d4735e; }
@@ -209,13 +213,16 @@ a, button, [role="button"] { cursor: pointer; }
 .section-label-ice { color: #b8c4d0; border-color: rgba(184, 196, 208, 0.2); background: rgba(184, 196, 208, 0.04); }
 
 .feature-item {
-  padding-left: 16px;
-  border-left: 2px solid rgba(167, 139, 250, 0.25);
-  transition: border-color 0.4s, padding-left 0.4s;
+  padding: 12px 16px;
+  border: 1px solid rgba(167, 139, 250, 0.12);
+  border-radius: 8px;
+  background: rgba(167, 139, 250, 0.02);
+  transition: border-color 0.4s, background 0.4s, transform 0.4s;
 }
 .feature-item:hover {
-  border-left-color: rgba(167, 139, 250, 0.7);
-  padding-left: 24px;
+  border-color: rgba(167, 139, 250, 0.4);
+  background: rgba(167, 139, 250, 0.06);
+  transform: translateX(4px);
 }
 
 .image-frame-hover {
